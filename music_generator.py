@@ -7,7 +7,7 @@ def generate_music(emotion):
     playlist_url = f"{base_url}/playlists/58tKJIS6L4vYBqM0mcerlf/tracks?limit=10" if emotion == "happy" else f"{base_url}/playlists/3K1PpxEipASK24SdExJXVa/tracks?limit=10"
 
     # Replace with your actual API key
-    api_key = "BQCgU32dgfWO-yLDTmWCO3cgijJgaH5vErnNZ9KsVitbdPjd8AycYywJExTy_uM4YCc-OykTA-RnNQavKYtWTgwu_r_of3cW6ieMR9bETT9C04-W7Lo4ox5iqAev2h8pyFIgbE4z9AE"
+    api_key = f"{YOUR_API_KEY}"
     headers = {
         "Authorization": f"Bearer {api_key}"
     }
