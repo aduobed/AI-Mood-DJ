@@ -1,9 +1,10 @@
-import streamlit as st
-from streamlit_webrtc import webrtc_streamer, VideoProcessorBase
-import av
-import webbrowser
-from emotion_detection import detect_emotion
 from music_generator import generate_music
+from emotion_detection import detect_emotion
+import webbrowser
+import av
+from streamlit_webrtc import webrtc_streamer, VideoProcessorBase
+import streamlit as st
+
 
 EMOJI_MAP = {
     "happy": "😄",
@@ -66,7 +67,16 @@ if st.session_state["last_frame"] is not None:
 
     with st.spinner("Finding the perfect track..."):
         try:
-            music_url, music_image = generate_music(emotion)
+            # After emotion is detected and before showing the Open in Spotify button
+            if "music_url" not in st.session_state or st.session_state.get("emotion") != emotion:
+                music_url, music_image = generate_music(emotion)
+                st.session_state["music_url"] = music_url
+                st.session_state["music_image"] = music_image
+                st.session_state["emotion"] = emotion
+            else:
+                music_url = st.session_state["music_url"]
+                music_image = st.session_state["music_image"]
+
             if music_url is None:
                 st.error("No music found for this emotion.")
             else:
@@ -74,14 +84,17 @@ if st.session_state["last_frame"] is not None:
                     "🎶 **Now playing music for your mood on spotify...**")
                 st.image(f"{music_image}", caption="Album Art",
                          use_container_width=True)
+
                 # Convert spotify:track:... to https://open.spotify.com/track/...
                 if music_url.startswith("spotify:track:"):
                     web_url = "https://open.spotify.com/track/" + \
                         music_url.split(":")[-1]
                 else:
                     web_url = music_url
+
                 if st.button("Open in Spotify"):
                     webbrowser.open(music_url)
+
         except Exception as e:
             st.error(f"Failed to play music: {e}")
 
