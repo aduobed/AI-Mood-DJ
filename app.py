@@ -68,7 +68,7 @@ if st.session_state["last_frame"] is not None:
     with st.spinner("Finding the perfect track..."):
         try:
             # After emotion is detected and before showing the Open in Spotify button
-            if "music_url" not in st.session_state or st.session_state.get("emotion") != emotion:
+            if st.session_state.get("emotion") != emotion or st.session_state.get("emotion") == emotion:
                 music_url, music_image = generate_music(emotion)
                 st.session_state["music_url"] = music_url
                 st.session_state["music_image"] = music_image
