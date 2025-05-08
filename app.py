@@ -31,6 +31,9 @@ if "camera_active" not in st.session_state:
 if st.button("▶️ Start Camera"):
     st.session_state["camera_active"] = True
     st.session_state["last_frame"] = None  # Reset last frame
+    st.session_state["music_url"] = None
+    st.session_state["music_image"] = None
+    st.session_state["emotion"] = None
 
 # Show live feed if camera is active
 if st.session_state["camera_active"]:
@@ -68,7 +71,7 @@ if st.session_state["last_frame"] is not None:
     with st.spinner("Finding the perfect track..."):
         try:
             # After emotion is detected and before showing the Open in Spotify button
-            if st.session_state.get("emotion") != emotion or st.session_state.get("emotion") == emotion:
+            if st.session_state.get("emotion") != emotion or st.session_state.get("music_url") is None:
                 music_url, music_image = generate_music(emotion)
                 st.session_state["music_url"] = music_url
                 st.session_state["music_image"] = music_image

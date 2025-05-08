@@ -4,7 +4,7 @@ import random
 
 def generate_music(emotion):
     base_url = "https://api.spotify.com/v1"
-    playlist_url = f"{base_url}/playlists/58tKJIS6L4vYBqM0mcerlf/tracks?limit=10" if emotion == "happy" else f"{base_url}/playlists/3K1PpxEipASK24SdExJXVa/tracks?limit=10"
+    playlist_url = f"{base_url}/playlists/7GhawGpb43Ctkq3PRP1fOL/tracks?limit=100" if emotion == "happy" else f"{base_url}/playlists/3K1PpxEipASK24SdExJXVa/tracks?limit=20"
 
     # Replace with your actual API key
     api_key = f"{YOUR_API_KEY}"
