@@ -23,22 +23,51 @@
    cd ai_mood_dj
    ```
 
-2. **Install dependencies:**
+### Setting Up a Python Virtual Environment
+
+It is recommended to use a virtual environment to manage dependencies and avoid conflicts. Below are the steps to create and activate a virtual environment using **Python 3.11.4**:
+
+2. **Install Python 3.11.4**
+
+If you don't have Python 3.11.4 installed, you can install it using [pyenv](https://github.com/pyenv/pyenv) or download it from the [official Python website](https://www.python.org/downloads/release/python-3114/).
+
+3. **Create a Virtual Environment**
+   ```bash
+    python3.11 -m venv venv
+   ```
+
+3. **Activate the Virtual Environment**
+
+   ***Macos***
+   ```bash
+    source venv/bin/activate
+   ```
+
+      ***Windows***
+   ```bash
+    venv\Scripts\activate
+   ```
+
+   Once activated, your terminal prompt will show (venv) indicating the environment is active. You can now install dependencies and run the app as described above.
+
+
+
+4. **Install dependencies:**
    ```bash
    pip install -r requirements.txt
    ```
 
-3. **Set up your API keys:**
+5. **Set up your API keys:**
    - Replace `"YOUR_SPOTIFY_API_KEY"` in `music_generator.py` with your actual Spotify API key.
    - Set up Spotify API credentials if using Spotify integration by creating an account on spotify.
    - Get started with spotify application creation [here](https://developer.spotify.com/documentation/web-api/tutorials/getting-started)
 
-4. **Run the app:**
+6. **Run the app:**
    ```bash
    streamlit run app.py
    ```
 
-5. **Usage:**
+7. **Usage:**
    - Click "Start Camera" to enable your webcam.
    - Click "Capture Image" to take a snapshot.
    - The app will analyze your mood and play music that matches your emotion using spotify app.
